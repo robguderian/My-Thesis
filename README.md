@@ -19,10 +19,10 @@ some files that do not need to be committed.
 
 To compile:
 
-    latex thesis.tex
-    bibtex thesis.tex
-    latex thesis.tex
-    latex thesis.tex
+    pdflatex thesis.tex
+    bibtex thesis
+    pdflatex thesis.tex
+    pdflatex thesis.tex
 
 For those unfamiliar with the process, the first run of `latex`
 compiles the source and makes marks of the references. `bibtex`
