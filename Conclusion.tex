@@ -1,0 +1,129 @@
+\chapter{Conclusion and Future Work}
+\label{ch:conclusion}
+
+In both simulation and testbed deployments, HCCP has increased message throughput while
+having very little negative effects on network lifespan. HCCP provides 
+a robust and tuneable network that provides many options to elect motes
+that have certain properties as clusterheads more frequently. 
+Depending on the configuration, HCCP appears to be able to provide network lifespans 
+as long as LEACH while having almost double the message throughput, as shown in both 
+simulations and physical deployments.
+
+While HCCP is more complex than LEACH, it has a more robust design, and provides
+infrastructure for disseminating information across the network. HCCP relies on 
+the network to have schedules in tight synchronization, which is a
+requirement in all WSN protocols, the novelty that HCCP adds is to 
+use this highly coupled time to describe how good a
+mote would be at being a clusterhead. The Goodness Delay
+utilizes time that would otherwise not be used to optimize 
+which motes will be clusterheads. 
+
+HCCP is designed to be an easily tuneable protocol, giving 
+the network designer tools to make the best network possible. 
+An example of tuning the network is 
+changing the length of the Roundtable Discussion time. This time
+is allotted to share any network-specific information that 
+doesn't fit anywhere else into the network. HCCP provides some suggestions
+as to what to share during this time, but is intended to be customized 
+for every individual network, or even left out if desired.
+
+Heterogeneity in a WSN can be a powerful thing, and HCCP uses this
+heterogeneity to elect better clusterheads. The definition of `better' is
+up to the network designer to choose. HCCP allows the election to focus 
+on motes that have qualities that a network designer feels are important 
+to the network. This thesis provides insight into what heterogeneous 
+factors have to offer to the network, how the affect the election, message
+throughput and network/mote lifespans.
+
+Overall, heterogeneity, whether the differences are small  or large, can be used 
+to generate better functioning WSNs. Choosing motes that are better for the task of clusterhead 
+will prevent lost messages with no cost to the lifespan of the network. The gains of 
+using heterogeneity that is already inherent in every WSN is free, having few negative 
+effects. Having the heterogeneity of a network self-assessed will ensure that 
+as a network degrades over time that the best possible motes at that time will
+be doing tasks that they are well-suited for, providing gains to the network from the time
+it is deployed to the time the last mote ceases to function.
+
+% future work
+
+Looking forward, HCCP could be simplified for further energy savings. For instance,
+the Clusterhead Candidacy phase could likely be merged with the Clusterhead Announcement phase,
+as there is little difference to the network lifespan or message throughput when the phases are merged. 
+Since removing the
+Clusterhead Candidacy would make HCCP simpler and would not 
+have any negative affects on the network, it would probably be a good idea. Further
+research could done on how HCCP could surpass LEACH in terms of network lifespan.
+
+A better routing protocol should be 
+incorporated into the design of HCCP. More research could be done 
+to see which routing algorithms would be the best with HCCP. The routing
+algorithm should also take advantage of the heterogeneity of the network, routing 
+messages through stronger motes.
+HCCP was designed with this in mind, and is easily changed to use any routing algorithm. 
+Further, if a mobile sink is a consideration, then using a routing algorithm that works efficiently with
+networks that have a mobile sink, such as MobiRoute~\cite{mobileSinkRouting}, is also possible.
+
+Querying motes in the network from the sink was not a focus of HCCP. If a network administrator 
+wants to request data from a mote, there is no set method of sending the messages to any mote in the network
+but the sink. To add querying to HCCP, a different routing method would need to be used, as only the  
+sink's position is advertised while using beacon routing. A routing protocol that has a table
+of all the mote's last known positions would need to be used. Once routing is set up, the 
+querying framework would need to be added. This feature could be added into the 
+Roundtable Discussion time, or into a new phase that is dedicated to mote querying.
+
+HCCP was not designed with any inherent security measures. If messages are solely to be routed to the sink, 
+simple RSA encryption~\cite{rsa}
+could be used to encrypt the messages that are being sent to the sink. Other security issues such as
+an errant mote that is dying continually becoming a clusterhead could be solved by blacklisting motes
+that are continuously clusterheads.
+
+To create a WSN with fewer collisions in the network,
+it is possible to use Frequency Division Multiple access (FDMA)~\cite{fdma} to use
+different radio channels for different clusters. 
+Clusterheads could announce the channel along with the TDMA schedule. 
+Using multiple radio channels during the TDMA clustermote reporting run time would remove many of the collisions
+that happen during the TDMA run time.
+
+
+Radio power could also be adjusted to suit the size of the network. Adjusting the radio power to the lowest transmission
+power saves mote energy, and prevents motes from flooding the network with unecessary messages from motes. Also, smaller transmission 
+ranges make clusters smaller. Changing the radio power effectively changes the cluster size, since few motes will be in 
+range. 
+Lin et al.~\cite{atpc}, Zheng et al.~\cite{adaptive2010}, Xiao and Yu~\cite{efficientRadioPower} and others have 
+developed efficient methods of adjusting the radio power to enable motes to talk 
+to a limited number of neighbouring motes. Messages to communicate radio power could be added
+to the HCCP's Roundtable Discussion, or piggybacked on announcement messages, such as clusterhead announcements.
+
+
+\section{Future Goals of WSNs}
+
+
+Smart Dust~\cite{smartdust-2, SmartDust-NC}, is one of the potential futures for WSNs. As circuits, processors
+and motes get smaller and smaller there may come a point where motes are no larger than the size of dust.
+These motes would have near negligible unit cost and be deployed in the thousands. Smart
+Dust would communicate wirelessly, monitoring some phenomena and glean energy from the environment
+to stay powered. Smart Dust would need to be deployed with a dense network that would need to be a multi-hop 
+network, as each device would have minimal battery power and minimal transmission power. Any protocols designed
+would have to be scalable to accommodate large networks of Smart Dust. HCCP has been designed to scale, but 
+smart dust might be a larger scale than HCCP was designed for, though HCCP provides interesting ways
+to use the differences in the dust well.
+
+As devices get smaller and more feature-rich, the eventual outcome might be
+that all devices are networked and can communicate with each other. When all devices
+can communicate with each other, they would create `an internet of things', a term 
+used frequently by Adam Dunkels~\cite{vasseur10interconnecting}, who is the 
+creator of Contiki OS~\cite{dunkels04contiki, contikiOS} and a key member of the WSN community.
+Dunkels et al.~\cite{dunkels11adhoc} believe that devices will communicate with each other using a
+lightweight version of IPv6 called 6LoWPAN IPv6~\cite{jhui10ipv6}. A subset of the larger IPv6 protocol~\cite{ipv6} 
+is an obvious choice, as it can provide unique addresses
+for $3.4 \times 10^{38}$ devices, which would provide 
+%$4.8 \times 10^{28}$ 
+48~000~000~000~000~000~000~000~000~000 addresses
+for every one of the 7 billion 
+humans on Earth. This means that every single device in the Internet of Things could have 
+it's own address, and be able to communicate with any other device in the internet of things. 
+This would make the entire Internet a massive scale WSN of sorts, with many heterogeneous 
+devices all connected using the common language of IPv6. HCCP uses IPv6 addressing, allowing 
+networks running HCCP to possibly be part of the internet of things.
+
+

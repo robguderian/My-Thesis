@@ -1,0 +1,79 @@
+Figure help at 
+http://www.physics.utah.edu/~detar/phys6720/handouts/latex.html
+htbp = h=here, the second t=top, third is b=bottom, and p=page-of-its-own
+
+
+Talk about problems with a static 'backbone'. Nodes can be out of range, backbone can break.
+
+
+The The optimal selection of cluster heads is an NP- hard problem
+Muthuramalingam, S.; Malarvizhi, R.; Veerayazhmi, R.; Rajaram, R. Reducing the Cluster Over- head by Selecting Optimal and Stable Cluster Head through Genetic Algorithm. In Proceedings of IEEE Asia International Conference on Modeling & Simulation, Kuala Lumpur, Malaysia, May 13-15, 2008; pp. 540-545.
+
+
+Remaining energy graph like page 6042 in sensors-09-06028. hawt.
+
+
+
+Notes from Rasit
+Introduction: 5-10 pages
+Related Work: 5-10 pages
+Description: 20 pages
+Experimental Results: 20 pages
+Conclusion: 2 pages
+Future Work: 2 pages
+
+
+About 50 references
+
+
+
+
+Talk about HCCP as middleware
+
+Motes want to send message <---> HCCP <---> MAC Layer
+
+given a bunch of densities... blah blah.
+u(R) = (NpiR^2)/A
+
+
+gnuplot stuff
+gnuplot> set datafile separator "," 
+gnuplot> plot "10ch-10sb-LongLived-medleachNodeData-201112220537.csv" using 7:8 with dots
+
+3D
+
+set datafile separator "," 
+set xlabel "Clusterhead Percentage"
+set title "HCCP Sparse 500x500"
+set ylabel "Suboptimal Percentage"
+set title "HCCP Sparse 500x500"
+set zrange [200000:250000]
+splot "hccpSparse500.csv" using 1:2:12 with dots 
+
+
+
+
+set datafile separator "," 
+gnuplot> splot "hccpSparse500.csv" using 1:2:12 with linespoints 
+gnuplot> splot "hccpSparse500.csv" using 1:2:12 with dots
+gnuplot> set zrange [200000:250000]
+gnuplot> splot "hccpSparse500.csv" using 1:2:12 with dots
+
+
+Find:
+Best reception rate
+best node life
+best balance/hand-off configuration (just works pretty well)
+
+Do an 'all clusterhead run' and compare to basic leach.
+
+Density.
+Same number of motes, more/less radio range. (Or, bigger space, but that would change the placement)
+Same space, different spots.
+
+energy dissapated rate. Like TEEN
+
+Some with wall power... like intel's plant from Yarvis and kushalnagar
+power outlet, but no extra network access
+
+message latency

@@ -1,0 +1,135 @@
+%%% thesis.tex 
+%
+% Robert Guderian, Sept 2000.
+% Toyed with by John Anderson, 2002-2010, and likely by others not listed here as well.
+
+%change to oneside if you want single sided.  Twoside will properly
+%alternate margins and page numbers for two-sided binding.
+%\documentclass[12pt,twoside,final]{huthesis}
+\documentclass[12pt,singleside,final]{huthesis}
+
+
+% change the font size of the captions
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+%\usepackage{epsfig,bm,epsf,float}
+\usepackage{graphicx}
+\usepackage{algorithm,algorithmic}
+%hyperref is nice, I find - it turns all your references (to citations, figures, etc) into hyperlinks,
+% so someone reading electronically can jump around your document.  It makes no visible marks on a
+%printed copy.
+\usepackage[plainpages=false,breaklinks=true]{hyperref}
+
+%use natbib for the bibliography
+\usepackage[square,comma]{natbib}
+%\bibpunct{[}{]}{;}{a}{,}{,} % this is just how natbib used to require options
+%note, Natbib is not required for any thesis - avoid using it if you don't like it, but it provides many nice
+%features for customizable bibliographies!
+
+%%% Clear Header %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Clear Header Style on the Last Empty Odd pages
+% this lets you jump to a new odd page (I have it set up for the end of the frontmatter)
+% while ensuring the blank page that is left doesn't have a running header or anything, i.e. it's
+% just completely blank. -JA (from Ki-Joo Kim, 2001)
+    \makeatletter
+    \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+        \hbox{}%
+        \thispagestyle{empty}%
+        \newpage%
+        \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+    \makeatother
+
+\def\newblock{\hskip .11em plus.33em minus.07em}
+
+%% choose which files to process
+%this was here to let you type in on the command line what you want TeX'd, and can be uncommented if you prefer to do it that way -
+%but given that you'll probably have a number of chapters, it's much easier to just edit this
+%file - JA
+%\typein [\files]{Enter file names to process, (frontmatter,intro,
+%  ...), or `all' to process all files:}
+%\def\all{all}
+%\ifx\files\all
+%\typeout{Including all files.} \else \typeout{Including only \files.}
+%\includeonly{\files}
+%\fi
+
+% Table of contents max depth listed:
+% 1 = section, 2 = subsection, 3 = subsubsection
+\setcounter{tocdepth}{2}
+
+%added these to support better use of space re. figure placement - JA
+\renewcommand{\floatpagefraction}{0.9}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+
+
+%import graphics drawing package
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\usepackage{wrapfig}
+
+
+% check which references are unused
+% \usepackage{refcheck}
+
+% for code prettification
+\usepackage{listings}
+
+% for making the tables have optional padding
+\usepackage{array}
+
+\begin{document}
+%note that you can input your own additions if you want - here is an example from a previous
+%user of this template.  I've left that math definition file in as it was supplied.
+%\input{mathdefs} % my math definitions.
+
+% UNDERLYING SPACING FOR WHOLE DOCUMENT:
+% Single spacing: takes place of `draft' mode, without losing figures.
+% \ssp
+
+% makes double-spaced
+\dsp
+
+\include{frontmatter}
+
+% Chapters: list all the chapter latex files you want included here, in order
+
+% subsections are grouped with the title of the chapter
+\include{ch1}
+
+\include{RelatedWork}
+
+\include{HCCP}
+\include{theoryOfOperation}
+\include{implementationDetails}
+
+
+\include{ExperimentalResults}
+\include{Simulation}
+\include{physicalNetwork}
+
+\include{Conclusion}
+
+%\include{FutureWork} % merged with conclusion
+
+
+% Appendices:list your appendix latex files you want included here, in order
+%\appendix
+%\include{ap1}
+
+% bibliography: this assumes the bibtex file containing your bibliography information is named 'bibs.bib'...
+
+
+%this uses the abbreviated names style - change to plainnat if you want names as they are verbatim in your bibtex
+%see the included natbib documentation (included) if you want to create your own bibliography style other than these.
+
+% part of the check for uncited stuff
+%\nocite{*}
+
+
+\bibliographystyle{unsrt}
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{bibs} 
+\end{document}
